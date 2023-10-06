@@ -57,8 +57,11 @@ def main():
             solution = solve_puzzle(puzzle)
             if solution:
                 st.success("Oplossing gevonden:")
+                # Maak een tabel met woorden en waarden
+                st.write("| Woord | Waarde |")
+                st.write("|-------|--------|")
                 for var, val in solution.items():
-                    st.write(f"{var}: {val}")
+                    st.write(f"| {var} | {val} |")
             else:
                 st.warning("Geen oplossing gevonden.")
         else:
