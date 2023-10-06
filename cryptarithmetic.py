@@ -57,28 +57,29 @@ def main():
             solution = solve_puzzle(puzzle)
             if solution:
                 st.success("Solution found:")
-                st.write("\n")
-
-                addends = puzzle.split("+")
-                result = puzzle.split("=")[1].strip()
                 
-                st.write(f"{addends[0]} + {addends[1]} = {result}")
-                st.write("-" * (len(addends[0]) + len(addends[1]) + len(result) + 4))
-
-                # Display the sum horizontally as letters
-                st.write(f"{addends[0]}")
-                st.write(f"+ {addends[1]}")
-                st.write("-" * max(len(addends[0]), len(addends[1])))
-
-                # Display the sum horizontally as numbers
-                st.write(f"{int(addends[0])}")
-                st.write(f"+ {int(addends[1])}")
-                st.write("-" * len(result))
-                st.write(f"{int(result)}")
-
-                st.write("\nSolution:")
-                for var, val in solution.items():
-                    st.write(f"{var}: {val}")
+                # Display the solution with words horizontally beneath each other
+                st.write("Digits Solution:")
+                digits_line = ""
+                for word in puzzle.split():
+                    for char in word:
+                        if char.isalpha():
+                            digits_line += str(solution[char])
+                        else:
+                            digits_line += char
+                    st.write(digits_line)
+                    digits_line = ""
+                
+                st.write("Letters Solution:")
+                letters_line = ""
+                for word in puzzle.split():
+                    for char in word:
+                        if char.isalpha():
+                            letters_line += char
+                        else:
+                            letters_line += char
+                    st.write(letters_line)
+                    letters_line = ""
             else:
                 st.warning("No solution found.")
         else:
