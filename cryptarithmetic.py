@@ -68,7 +68,7 @@ def main():
                     else:
                         letters_line += char
                         digits_line += char
-                st.write(f"{letters_line}","---",\n"{digits_line}")
+                st.write(f"{letters_line}---\n{digits_line}")
             else:
                 st.warning("No solution found.")
         else:
