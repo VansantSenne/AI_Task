@@ -50,31 +50,39 @@ def solve_puzzle(puzzle):
 # Streamlit-applicatie
 def main():
     st.title("Cryptarithmetic Puzzle Solver")
-    puzzle = st.text_input("Voer de cryptarithmetic puzzel in (bijv. TO + GO = OUT):").upper()
+    puzzle = st.text_input("Enter the cryptarithmetic puzzle (e.g., TO + GO = OUT):").upper()
     
-    if st.button("Oplossen"):
+    if st.button("Solve"):
         if puzzle:
             solution = solve_puzzle(puzzle)
             if solution:
-                st.success("Oplossing gevonden:")
+                st.success("Solution found:")
                 st.write("\n")
 
                 addends = puzzle.split("+")
                 result = puzzle.split("=")[1].strip()
-
-                # Visueel aantrekkelijke weergave van de som
-                st.write(f"{addends[0]:>{len(result)}}")
-                st.write(f"+ {addends[1]:>{len(result)}}")
-                st.write("-" * (len(result) + 2))
-                st.write(f" {result:>{len(result)}}")
                 
-                st.write("\nOplossing:")
+                st.write(f"{addends[0]} + {addends[1]} = {result}")
+                st.write("-" * (len(addends[0]) + len(addends[1]) + len(result) + 4))
+
+                # Display the sum horizontally as letters
+                st.write(f"{addends[0]}")
+                st.write(f"+ {addends[1]}")
+                st.write("-" * max(len(addends[0]), len(addends[1])))
+
+                # Display the sum horizontally as numbers
+                st.write(f"{int(addends[0])}")
+                st.write(f"+ {int(addends[1])}")
+                st.write("-" * len(result))
+                st.write(f"{int(result)}")
+
+                st.write("\nSolution:")
                 for var, val in solution.items():
                     st.write(f"{var}: {val}")
             else:
-                st.warning("Geen oplossing gevonden.")
+                st.warning("No solution found.")
         else:
-            st.warning("Voer een geldige cryptarithmetic puzzel in.")
+            st.warning("Enter a valid cryptarithmetic puzzle.")
 
 if __name__ == "__main__":
     main()
