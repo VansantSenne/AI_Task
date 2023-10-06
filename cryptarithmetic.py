@@ -58,20 +58,17 @@ def main():
             if solution:
                 st.success("Solution found:")
                 
-                # Display the solution with words horizontally next to each other
+                # Display the solution with letters and digits next to each other
                 digits_line = ""
                 letters_line = ""
-                for word in puzzle.split():
-                    for char in word:
-                        if char.isalpha():
-                            digits_line += str(solution[char])
-                            letters_line += char
-                        else:
-                            digits_line += char
-                            letters_line += char
-                    st.write(f"{letters_line}  {digits_line}")
-                    digits_line = ""
-                    letters_line = ""
+                for char in puzzle:
+                    if char.isalpha():
+                        letters_line += char
+                        digits_line += str(solution[char])
+                    else:
+                        letters_line += char
+                        digits_line += char
+                st.write(f"{letters_line}\n{digits_line}")
             else:
                 st.warning("No solution found.")
         else:
