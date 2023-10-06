@@ -57,17 +57,20 @@ def main():
             solution = solve_puzzle(puzzle)
             if solution:
                 st.success("Oplossing gevonden:")
-                for var, val in solution.items():
-                    st.write(f"{var}: {val}")
-                
-                # Voeg de visueel aantrekkelijke som toe
+                st.write("\n")
+
                 addends = puzzle.split("+")
                 result = puzzle.split("=")[1].strip()
-                st.write("\n")
-                st.write("  " + addends[0])
-                st.write("+ " + addends[1])
-                st.write("-" * max(len(addends[0]), len(addends[1]), len(result)))
-                st.write(" " + result)
+
+                # Visueel aantrekkelijke weergave van de som
+                st.write(f"{addends[0]:>{len(result)}}")
+                st.write(f"+ {addends[1]:>{len(result)}}")
+                st.write("-" * (len(result) + 2))
+                st.write(f" {result:>{len(result)}}")
+                
+                st.write("\nOplossing:")
+                for var, val in solution.items():
+                    st.write(f"{var}: {val}")
             else:
                 st.warning("Geen oplossing gevonden.")
         else:
